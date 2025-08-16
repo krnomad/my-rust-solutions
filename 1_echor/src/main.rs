@@ -1,7 +1,7 @@
 use clap::{Arg, Command};
 use clap::Parser;
 
-fn deprecated_main() {
+fn _deprecated_main() {
     let _mactches = Command::new("echor")
                                 .version("0.1.0")
                                 .author("jong")
@@ -42,4 +42,7 @@ struct Args {
 }
 fn main() {
     let _args = Args::parse();
+    let ending = if _args.omit_newline { "" } else { "\n" };
+
+    print!("{}{ending}", _args.text.join(" "));
 }
