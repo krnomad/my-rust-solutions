@@ -1,6 +1,7 @@
 use clap::{Arg, Command};
+use clap::Parser;
 
-fn main() {
+fn deprecated_main() {
     let _mactches = Command::new("echor")
                                 .version("0.1.0")
                                 .author("jong")
@@ -28,4 +29,17 @@ fn main() {
     let ending = if omit_newline { "" } else { "\n" };
 
     print!("{}{ending}", text.join(" "));
+}
+
+#[derive(Debug, Parser)]
+#[command(version, about)]
+struct Args {
+    #[arg(required(true))]
+    text: Vec<String>,
+
+    #[arg(short('n'), long("no-newline"), help("do not print new line"))]
+    omit_newline: bool,
+}
+fn main() {
+    let _args = Args::parse();
 }
